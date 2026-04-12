@@ -1,0 +1,33 @@
+{% extends 'blog_app/base.html' %}
+
+{% block header %}
+    <nav class="main-nav">
+        {% if request.resolver_match.url_name != 'home' %}
+            <a href="{% url 'home' %}" class="nav-link">🏠 Главная</a>
+        {% endif %}
+        
+        {% if request.resolver_match.url_name != 'post_list' %}
+            <a href="{% url 'post_list' %}" class="nav-link">📄 Посты</a>
+        {% endif %}
+        
+        {% if request.resolver_match.url_name != 'about' %}
+            <a href="{% url 'about' %}" class="nav-link">👤 О себе</a>
+        {% endif %}
+        
+        {% if request.resolver_match.url_name != 'post_create' %}
+            <a href="{% url 'post_create' %}" class="nav-link btn-create">➕ Создать пост</a>
+        {% endif %}
+    </nav>
+{% endblock %}
+
+{% comment %} {% extends 'blog_app/base.html' %}
+
+{% block header %}
+    <h1>📝 Мой блог</h1>
+    <nav class="main-nav">
+        <a href="{% url 'home' %}" class="nav-link">🏠 Главная</a>
+        <a href="{% url 'post_list' %}" class="nav-link">📄 Посты</a>
+        <a href="{% url 'about' %}" class="nav-link">👤 О себе</a>
+        <a href="{% url 'post_create' %}" class="nav-link btn-create">➕ Создать пост</a>
+    </nav>
+{% endblock %} {% endcomment %}

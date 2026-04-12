@@ -1,0 +1,43 @@
+// Импорт переменных
+@use 'variables' as *;
+@use 'blog';
+
+// Глобальные стили
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    background-color: $light-bg;
+    color: $text-color;
+    line-height: 1.6;
+}
+
+// Шапка сайта
+.main-header {
+    background: $primary-color;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    h1 {
+        max-width: $container-width;
+        margin: 0 auto;
+        padding: 0 20px;
+        font-size: 2rem;
+    }
+}
+
+// Подвал
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: $primary-color;
+    color: white;
+    font-size: 0.9rem;
+}

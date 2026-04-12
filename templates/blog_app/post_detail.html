@@ -1,0 +1,25 @@
+{% extends 'blog_app/base_header.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <article class="post-detail">
+        <div class="post-detail-header">
+            <h1 class="post-detail-title">{{ post.title }}</h1>
+            <div class="post-detail-meta">
+                📅 Опубликовано: {{ post.created_at|date:"d E Y" }} в {{ post.created_at|date:"H:i" }}
+            </div>
+        </div>
+        
+        <div class="post-detail-content">
+            {{ post.content|linebreaks }}
+        </div>
+        
+        <div class="post-detail-actions">
+            <a href="{% url 'post_list' %}" class="btn">← Назад к списку</a>
+            <a href="{% url 'post_create' %}" class="btn btn-primary">➕ Создать новый пост</a>
+        </div>
+    </article>
+</div>
+{% endblock %}

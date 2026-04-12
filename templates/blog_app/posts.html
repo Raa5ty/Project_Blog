@@ -1,0 +1,39 @@
+{% extends 'blog_app/base_header.html' %}
+{% load static %}
+
+{% block title %}Список постов{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="posts-header">
+        <h1>📄 Все посты</h1>
+    </div>
+    
+    {% if posts %}
+        <div class="posts-list">
+            {% for post in posts %}
+                <article class="post">
+                    <h2 class="post-title">
+                        <a href="{% url 'post_detail' post.pk %}" class="post-link">{{ post.title }}</a>
+                    </h2>
+                    <div class="post-meta">
+                        📅 Опубликовано: {{ post.created_at|date:"d E Y" }} в {{ post.created_at|date:"H:i" }}
+                    </div>
+                    <div class="post-content">
+                        {{ post.content|linebreaks|truncatewords:50 }}
+                    </div>
+                    <div class="post-actions">
+                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-small">📖 Читать далее</a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>😕 Пока нет постов.</p>
+            <p>Станьте первым, кто создаст пост!</p>
+            <a href="{% url 'post_create' %}" class="btn btn-primary">➕ Создать первый пост</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'blog_app/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block header %}
+    {% comment %} <h1>📝 Мой блог</h1> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="welcome-section">
+        <h1 class="welcome-title">Добро пожаловать в мой блог! 🎉</h1>
+        <p class="welcome-text">Здесь я делюсь своими мыслями, идеями и интересными находками.</p>
+        
+        <div class="features-grid">
+            <a href="{% url 'post_list' %}" class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Посты</h3>
+                <p>Читайте мои последние статьи о программировании, технологиях и жизни.</p>
+            </a>
+            
+            <a href="{% url 'about' %}" class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h3>О себе</h3>
+                <p>Узнайте больше обо мне, моих навыках и интересах.</p>
+            </a>
+            
+            {% comment %} <a href="{% url 'post_create' %}" class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3>Создать пост</h3>
+                <p>Поделитесь своей историей или мыслями с читателями.</p> {% endcomment %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
