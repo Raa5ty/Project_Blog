@@ -1,6 +1,36 @@
 @use 'variables' as *;
 
 // ============================================
+// 0. БАЗОВЫЕ СТИЛИ ДЛЯ ПРИЛИПАЮЩЕГО ФУТЕРА
+// ============================================
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex: 1 0 auto;
+}
+
+.main-footer {
+    flex-shrink: 0;
+}
+
+// ============================================
 // 1. ГЛОБАЛЬНЫЕ СТИЛИ
 // ============================================
 
@@ -109,6 +139,24 @@
 .btn-large {
     padding: 12px 30px;
     font-size: 1.1rem;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #333;
+    
+    &:hover {
+        background: #e0a800;
+    }
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    
+    &:hover {
+        background: #c82333;
+    }
 }
 
 // ============================================

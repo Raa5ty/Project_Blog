@@ -1,0 +1,24 @@
+{% extends 'blog_app/base_header.html' %}
+
+{% block title %}Удалить пост{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="form-container">
+        <h1>🗑️ Удалить пост</h1>
+        
+        <div class="alert alert-warning">
+            <p>Вы уверены, что хотите удалить пост <strong>"{{ post.title }}"</strong>?</p>
+            <p>Это действие нельзя отменить!</p>
+        </div>
+        
+        <form method="post" class="delete-form">
+            {% csrf_token %}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">✅ Да, удалить</button>
+                <a href="{% url 'post_detail' post.pk %}" class="btn">❌ Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

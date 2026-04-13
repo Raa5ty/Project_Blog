@@ -19,15 +19,3 @@
         {% endif %}
     </nav>
 {% endblock %}
-
-{% comment %} {% extends 'blog_app/base.html' %}
-
-{% block header %}
-    <h1>📝 Мой блог</h1>
-    <nav class="main-nav">
-        <a href="{% url 'home' %}" class="nav-link">🏠 Главная</a>
-        <a href="{% url 'post_list' %}" class="nav-link">📄 Посты</a>
-        <a href="{% url 'about' %}" class="nav-link">👤 О себе</a>
-        <a href="{% url 'post_create' %}" class="nav-link btn-create">➕ Создать пост</a>
-    </nav>
-{% endblock %} {% endcomment %}

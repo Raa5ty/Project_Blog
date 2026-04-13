@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import Post
 from .forms import PostForm
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 def home(request):
     return render(request, 'blog_app/home.html')
@@ -27,4 +27,14 @@ class PostCreateView(CreateView):
     form_class = PostForm
     template_name = 'blog_app/create_post.html'
     success_url = reverse_lazy('post_list')  # Перенаправление на главную страницу после создания поста
-    
+
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'blog_app/edit_post.html'
+    success_url = reverse_lazy('post_list')
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'blog_app/delete_post.html'
+    success_url = reverse_lazy('post_list')

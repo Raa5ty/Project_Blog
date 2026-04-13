@@ -4,9 +4,12 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('posts/', views.PostListView.as_view(), name='post_list'), # если используем класс-based вьюху
+    path('posts/', views.PostListView.as_view(), name='post_list'),
     path('posts/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
     path('posts/create/', views.PostCreateView.as_view(), name='post_create'),
+    path('posts/<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_edit'), 
+    path('posts/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'), 
+    
     path('about/', views.about, name='about'),
     
 ]

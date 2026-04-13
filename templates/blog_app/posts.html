@@ -22,8 +22,11 @@
                     <div class="post-content">
                         {{ post.content|linebreaks|truncatewords:50 }}
                     </div>
+                    <br>
                     <div class="post-actions">
                         <a href="{% url 'post_detail' post.pk %}" class="btn btn-small">📖 Читать далее</a>
+                        <a href="{% url 'post_edit' post.pk %}" class="btn btn-small btn-edit">✏️ Редактировать</a>
+                        <a href="{% url 'post_delete' post.pk %}" class="btn btn-small btn-danger">🗑️ Удалить</a>
                     </div>
                 </article>
             {% endfor %}
