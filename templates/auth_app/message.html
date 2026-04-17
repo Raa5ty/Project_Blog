@@ -1,0 +1,56 @@
+{% extends 'blog_app/base_header.html' %}
+
+{% block title %}Связь со мной{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="message-container">
+        <div class="message-header">
+            <h1>📧 Связь со мной</h1>
+            <p>Заполните форму ниже, чтобы отправить мне сообщение</p>
+        </div>
+        
+        <div class="message-form-container">
+            <form method="post" class="message-form">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                    <div class="alert alert-error">
+                        <strong>⚠️ Пожалуйста, исправьте ошибки:</strong>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ field.label }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                
+                <div class="form-group">
+                    <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                    {{ form.name }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                    {{ form.email }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+                    {{ form.message }}
+                    {% if form.message.help_text %}
+                        <small class="form-help">{{ form.message.help_text }}</small>
+                    {% endif %}
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">✉️ Отправить сообщение</button>
+                    <a href="{% url 'home' %}" class="btn">❌ Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

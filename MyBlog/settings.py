@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog_app.apps.BlogAppConfig',
+    'auth_app.apps.AuthAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+# Перенаправление после логина/логаута
+LOGIN_URL = '/auth/login/'   # URL для страницы логина
+LOGIN_REDIRECT_URL = '/'     # Куда перенаправлять после логина
+LOGOUT_REDIRECT_URL = ''    # Куда перенаправлять после логаута
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/

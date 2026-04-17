@@ -5,8 +5,13 @@
 {% block content %}
 <div class="blog-container">
     <div class="welcome-section">
-        <h1 class="welcome-title">Добро пожаловать в мой блог! 🎉</h1>
-        <p class="welcome-text">Здесь я делюсь своими мыслями, идеями и интересными находками.</p>
+        {% if user.is_authenticated %}
+            <h1 class="welcome-title">С возвращением, {{ user.username }}! 🎉</h1>
+            <p class="welcome-text">Рады видеть вас снова. Что хотите сделать сегодня?</p>
+        {% else %}
+            <h1 class="welcome-title">Добро пожаловать в мой блог! 🎉</h1>
+            <p class="welcome-text">Здесь я делюсь своими мыслями, идеями и интересными находками.</p>
+        {% endif %}
         
         <div class="features-grid">
             <a href="{% url 'post_list' %}" class="feature-card">
@@ -21,11 +26,37 @@
                 <p>Узнайте больше обо мне, моих навыках и интересах.</p>
             </a>
             
-            {% comment %} <a href="{% url 'post_create' %}" class="feature-card">
-                <div class="feature-icon">✍️</div>
-                <h3>Создать пост</h3>
-                <p>Поделитесь своей историей или мыслями с читателями.</p> {% endcomment %}
+            <a href="{% url 'message' %}" class="feature-card">
+                <div class="feature-icon">✉️</div>
+                <h3>Связь</h3>
+                <p>Напишите мне сообщение - я всегда рад обратной связи.</p>
             </a>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_create' %}" class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Создать пост</h3>
+                    <p>Поделитесь своей историей или мыслями с читателями.</p>
+                </a>
+                
+                <a href="{% url 'profile' %}" class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Профиль</h3>
+                    <p>Управляйте своим профилем и настройками.</p>
+                </a>
+            {% else %}
+                <a href="{% url 'register' %}" class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Регистрация</h3>
+                    <p>Создайте аккаунт, чтобы получать уведомления о новых постах.</p>
+                </a>
+                
+                <a href="{% url 'login' %}" class="feature-card">
+                    <div class="feature-icon">🔑</div>
+                    <h3>Вход</h3>
+                    <p>Уже зарегистрированы? Войдите в свой аккаунт.</p>
+                </a>
+            {% endif %}
         </div>
     </div>
 </div>

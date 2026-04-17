@@ -1,0 +1,67 @@
+{% extends 'blog_app/base_header.html' %}
+
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>👤 Мой профиль</h1>
+            <p>Добро пожаловать, <strong>{{ user.username }}</strong>!</p>
+        </div>
+        
+        <div class="profile-info">
+            <div class="info-card">
+                <h3>Основная информация</h3>
+                <div class="info-row">
+                    <span class="info-label">Username:</span>
+                    <span class="info-value">{{ user.username }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ user.email|default:"Не указан" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Дата регистрации:</span>
+                    <span class="info-value">{{ user.date_joined|date:"d E Y" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>Дополнительная информация</h3>
+                <form method="post" class="profile-form">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-error">
+                            <strong>⚠️ Пожалуйста, исправьте ошибки:</strong>
+                            <ul>
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ field.label }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>
+                        {{ form.phone_number }}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.bio.id_for_label }}">{{ form.bio.label }}</label>
+                        {{ form.bio }}
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">💾 Сохранить изменения</button>
+                        <a href="{% url 'home' %}" class="btn">🏠 На главную</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
